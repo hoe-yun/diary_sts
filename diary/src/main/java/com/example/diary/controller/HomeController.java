@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.diary.service.CalendarService;
 import com.example.diary.service.CounterService;
+import com.example.diary.service.NoticeService;
 import com.example.diary.service.ScheduleService;
 import com.example.diary.vo.Member;
+import com.example.diary.vo.Notice;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,8 @@ public class HomeController {
 	private ScheduleService scheduleService;
 	@Autowired
 	private CounterService counterService;
+	@Autowired
+	private NoticeService noticeService;
 	@GetMapping("/home")
 	public String home(HttpSession session,Model model,
 						@RequestParam(required = false) Integer targetYear,	//(required = false)을 넣으면 null값도 받을 수 있음
@@ -53,12 +57,17 @@ public class HomeController {
 		int totalCnt = counterService.selectCntSum();
 		log.debug("\u001B[42m"+totalCnt);
 		
+		//NoticeService 호출
+		List<Notice> noticeList = noticeService.noticeList(1);
+		log.debug("\u001B[42m"+noticeList);
+		
 		//home.jsp로 보낼 값 넣기
 		model.addAttribute("loginId", loginId);
 		model.addAttribute("calendarMap", calendarMap);
 		model.addAttribute("scheduleList", scheduleList);
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("maxMinMap", maxMinMap);
+		model.addAttribute("noticeList", noticeList);
 		
 		//리턴
 		return "home";
