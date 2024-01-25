@@ -30,8 +30,8 @@ public class CalendarService {
 		log.debug("\u001B[43m"+targetMonth);
 		
 		//타겟 월의 마지막 일
-		int lastDate = firstD.getMaximum(Calendar.DATE);
-		log.debug("\u001B[43m"+lastDate);
+		int lastDate = firstD.getActualMaximum(Calendar.DATE);
+		log.debug("\u001B[43m"+lastDate+"<--마지막 날짜 "+targetMonth+"월");
 		
 		//타켓 월의 시작 공백
 		int beginBlank = firstD.get(Calendar.DAY_OF_WEEK) - 1; // 요일의 매핑값(일요일1,월요일2...토요일7) - 1
