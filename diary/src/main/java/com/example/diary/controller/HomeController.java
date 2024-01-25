@@ -30,6 +30,16 @@ public class HomeController {
 	private CounterService counterService;
 	@Autowired
 	private NoticeService noticeService;
+	
+	@GetMapping("/")
+	public String start(HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/login";
+		}
+		
+		return "redirect:/home";
+	}
+	
 	@GetMapping("/home")
 	public String home(HttpSession session,Model model,
 						@RequestParam(required = false) Integer targetYear,	//(required = false)을 넣으면 null값도 받을 수 있음

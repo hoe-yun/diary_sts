@@ -34,11 +34,11 @@
 			<table class="table">
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="memberId" id="memberId"></td>
+					<td><input type="text" name="memberId" id="memberId" value="goodee"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" name="memberPw" id="memberPw"></td>
+					<td><input type="password" name="memberPw" id="memberPw" value="1234"></td>
 				</tr>
 			</table>
 		</form>

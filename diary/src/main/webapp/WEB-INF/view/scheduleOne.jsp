@@ -27,45 +27,60 @@
 </script>
 </head>
 <body>
-	<div class="container col-lg-5" align="center">
-		<br><h1>${memberId }님의 ${targetYear }년 ${targetMonth }월 ${targetDate }일의 일정</h1><br><br>
-		<a href="${pageContext.request.contextPath }/home" class="btn btn-outline-dark">뒤로</a><br><br>
-		<table class="table">
-			<c:forEach var="s" items="${scheduleList }">
-				<tr align="center">
-					<td class="col-lg-1">일정 : </td>
-					<td class="col-lg-1">${s.scheduleEmoji }</td>
-					<td class="col-lg-7">${s.scheduleMemo }</td>
-					<td class="col-lg-3">
-						<a href="${pageContext.request.contextPath }/modifySchedule?scheduleNo=${s.scheduleNo}&targetYear=${targetYear }&targetMonth=${targetMonth }&targetDate=${targetDate }" class="btn btn-outline-dark">수정</a>
-						<a href="${pageContext.request.contextPath }/removeSchedule?scheduleNo=${s.scheduleNo}&targetYear=${targetYear }&targetMonth=${targetMonth }&targetDate=${targetDate }" class="btn btn-outline-danger">삭제</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br><br>
-		<table class="table">
-			<tr align="center">
-				<form action="${pageContext.request.contextPath }/addSchedule" method="post" id="form">
-					<td class="col-lg-7">
-						<textarea name="scheduleMemo" rows="3" cols="50" id="scheduleMemo"></textarea>
-					</td>
-					<td class="col-lg-3"><br>
-						<input type="radio" name="scheduleEmoji" value="&#128110;"><span>&#128110;</span>
-						<input type="radio" name="scheduleEmoji" value="&#128186;">&#128186;
-						<input type="radio" name="scheduleEmoji" value="&#127981;">&#127981;
-					</td>
-					<td>
-						<input type="hidden" name="targetYear" value="${targetYear }">
-						<input type="hidden" name="targetMonth" value="${targetMonth }">
-						<input type="hidden" name="targetDate" value="${targetDate }">
-					</td>
-				</form>
-				<td class="col-lg-2"><br>
-					<button class="btn btn-outline-dark" id="btn">추가</button>
-				</td>
-			</tr>
-		</table>
+	<!-- 헤더 -->
+	<div class="container" align="center">
+		<div align="right"><br>
+			<button disabled class="btn btn-outline-dark">누적 접속자 : ${totalCnt }</button>
+			<button disabled class="btn btn-outline-primary">접속자 : ${currentCnt }</button>
+		</div><br>
+		<div style="background-color:#D1E7DD; border-radius:5px;">
+			<br><br><h1>${loginMember.memberId }'s Diary</h1><br><br>
+		</div>
+	</div><br>
+	<!-- 헤더 -->
+	<div class="container">
+		<div class="container" style="border:5px solid #D1E7DD; border-radius:5px;">
+			<div class="container col-lg-10" align="center">
+				<br><h1>${targetYear }년 ${targetMonth }월 ${targetDate }일의 일정</h1><br><br>
+				<a href="${pageContext.request.contextPath }/home" class="btn btn-outline-dark">뒤로</a><br><br>
+				<table class="table">
+					<c:forEach var="s" items="${scheduleList }">
+						<tr align="center">
+							<td class="col-lg-1">일정 : </td>
+							<td class="col-lg-1">${s.scheduleEmoji }</td>
+							<td class="col-lg-7">${s.scheduleMemo }</td>
+							<td class="col-lg-3">
+								<a href="${pageContext.request.contextPath }/modifySchedule?scheduleNo=${s.scheduleNo}&targetYear=${targetYear }&targetMonth=${targetMonth }&targetDate=${targetDate }" class="btn btn-outline-dark">수정</a>
+								<a href="${pageContext.request.contextPath }/removeSchedule?scheduleNo=${s.scheduleNo}&targetYear=${targetYear }&targetMonth=${targetMonth }&targetDate=${targetDate }" class="btn btn-outline-danger">삭제</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<br><br>
+				<table class="table">
+					<tr align="center">
+						<form action="${pageContext.request.contextPath }/addSchedule" method="post" id="form">
+							<td class="col-lg-7">
+								<textarea name="scheduleMemo" rows="3" cols="80" id="scheduleMemo"></textarea>
+							</td>
+							<td class="col-lg-3"><br>
+								<input type="radio" name="scheduleEmoji" value="&#128110;"><span>&#128110;</span>
+								<input type="radio" name="scheduleEmoji" value="&#128186;">&#128186;
+								<input type="radio" name="scheduleEmoji" value="&#127981;">&#127981;
+							</td>
+							<td>
+								<input type="hidden" name="targetYear" value="${targetYear }">
+								<input type="hidden" name="targetMonth" value="${targetMonth }">
+								<input type="hidden" name="targetDate" value="${targetDate }">
+							</td>
+						</form>
+						<td class="col-lg-2"><br>
+							<button class="btn btn-outline-dark" id="btn">추가</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
