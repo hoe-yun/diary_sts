@@ -63,10 +63,6 @@ public class HomeController {
 		Map<String, Integer> maxMinMap = scheduleService.getScheduleYearMaxMin();
 		log.debug("\u001B[42m"+maxMinMap);
 		
-		//CounterService 호출
-		int totalCnt = counterService.selectCntSum();
-		log.debug("\u001B[42m"+totalCnt);
-		
 		//NoticeService 호출
 		List<Notice> noticeList = noticeService.noticeList(1);
 		log.debug("\u001B[42m"+noticeList);
@@ -75,7 +71,6 @@ public class HomeController {
 		model.addAttribute("loginId", loginId);
 		model.addAttribute("calendarMap", calendarMap);
 		model.addAttribute("scheduleList", scheduleList);
-		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("maxMinMap", maxMinMap);
 		model.addAttribute("noticeList", noticeList);
 		

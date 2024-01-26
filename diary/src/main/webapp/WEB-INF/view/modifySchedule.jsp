@@ -22,6 +22,14 @@
 				$('#form').submit()
 			}
 		})
+		
+		$.ajax({
+			url:'/diary/COUNT',
+			method:'get',
+			success:function(json){
+				$('#totalCnt').text('누적 접속자 : '+json);
+			}
+		})
 	})
 </script>
 </head>
@@ -29,7 +37,7 @@
 	<!-- 헤더 -->
 	<div class="container" align="center">
 		<div align="right"><br>
-			<button disabled class="btn btn-outline-dark">누적 접속자 : ${totalCnt }</button>
+			<<button id="totalCnt" disabled class="btn btn-outline-dark"></button>
 			<button disabled class="btn btn-outline-primary">접속자 : ${currentCnt }</button>
 		</div><br>
 		<div style="background-color:#D1E7DD; border-radius:5px;">

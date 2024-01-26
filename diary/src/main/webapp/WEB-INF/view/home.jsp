@@ -12,12 +12,26 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url:'/diary/COUNT',
+			method:'get',
+			success:function(json){
+				$('#totalCnt').text('누적 접속자 : '+json);
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<!-- 헤더 -->
 	<div class="container" align="center">
 		<div align="right"><br>
-			<button disabled class="btn btn-outline-dark">누적 접속자 : ${totalCnt }</button>
+			<button id="totalCnt" disabled class="btn btn-outline-dark"></button>
 			<button disabled class="btn btn-outline-primary">접속자 : ${currentCnt }</button>
 		</div><br>
 		<div style="background-color:#D1E7DD; border-radius:5px;">
